@@ -10,6 +10,13 @@ export ZSH=/home/rich/.oh-my-zsh
 ZSH_THEME="agnoster"
 DEFAULT_USER="rich"
 
+export DUNST_FONT='Cantarell 11'
+export DUNST_SIZE='600x60-80+80'
+
+export BAR_FONT="Cantarell 11"
+export BAR_HEIGHT="60"
+
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -100,13 +107,13 @@ export NNN_USE_EDITOR=1
 export NNN_DE_FILE_MANAGER=thunar
 
 source "${HOME}/.cache/wal/colors.sh"
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
-bind '"\e[B": history-search-forward'
 (wal -r"${VTE_VERSION:+"t"}" &)
 
 wal -i ~/Pictures/Wallpapers
 
 PATH=$PATH:/opt/Unity/Editor/Data/Mono/bin
 
+nohup bar >/dev/null 2>&1 &
+
 (wal -r"${VTE_VERSION:+"t"}" &)
+
