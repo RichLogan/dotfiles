@@ -1,14 +1,10 @@
 # Dylan's i3 Config.
 
-
 set $mod Mod1
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-
-set $mod Mod4
+# font pango:DejaVu Sans Mono 8
 floating_modifier $mod
 
 # start a terminal
@@ -57,7 +53,6 @@ bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 
-bindsym $mod+Return exec urxvtc
 bindsym $mod+q kill
 bindsym $mod+d exec rof
 bindsym $mod+Shift+c reload
@@ -108,19 +103,6 @@ smart_borders on
 gaps inner 60
 gaps outer 100
 
-workspace 1 output DVI-I-0
-workspace 2 output DVI-I-0
-workspace 3 output DVI-I-0
-workspace 4 output DVI-I-0
-workspace 5 output DVI-I-0
-workspace 6 output DVI-I-0
-workspace 7 output DVI-I-0
-workspace 8 output DVI-I-0
-workspace 9 output HDMI-A-0
-
-# Toggle sticky windows
-bindsym $mod+e sticky toggle
-
 # Title bars with padding.
 # We first set the titlebar font size to a larger font size than desired
 # to get a good padding amount. We then use pango markup to force i3 to
@@ -140,10 +122,6 @@ bindsym XF86AudioMute exec --no-startup-id "vol mute &"
 bindsym XF86AudioPlay exec "song toggle"
 bindsym XF86AudioNext exec "song next"
 bindsym XF86AudioPrev exec "song prev"
-
-# Cycle wallpapers
-bindsym $mod+w exec "wal -i ${HOME}/Pictures/Wallpapers -o wal-set"
-
 
 # Cycle wallpapers
 bindsym $mod+w exec "wal -i $HOME/Pictures/Wallpapers -o wal-set"
