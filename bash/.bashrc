@@ -4,7 +4,7 @@
 export PS1
 PS1="\w \[$(tput setaf 6)\]ily \[$(tput sgr0)\]"
 
-PATH="${PATH}:${HOME}/bin"
+
 PATH="${HOME}/.gem/ruby/2.4.0/bin:${PATH}"
 PATH="${PATH}:${HOME}/.local/bin/"
 
