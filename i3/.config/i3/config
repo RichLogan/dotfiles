@@ -95,9 +95,8 @@ bindsym $mod+w exec "wal -i ${HOME}/Pictures/Wallpapers -o wal-set"
 # WINDOW RULES {{{
 
 
-for_window [class="^.*"] border pixel 0
-for_window [class="VirtualBox"] floating enable
-for_window [class=".*"] title_format "<span>%title</span>"
+for_window [class="^.*"] border none
+# for_window [class=".*"] title_format "%title"
 
 
 # }}}
