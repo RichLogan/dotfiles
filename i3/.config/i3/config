@@ -1,26 +1,40 @@
 # Dylan's i3 Config.
 
 
-# GENERAL {{{
+set $mod Mod1
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 8
 
 
 set $mod Mod4
 floating_modifier $mod
 
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
 
 # }}}
 
 
 # KEYBINDS {{{
 
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
-bindsym $mod+g split h
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
 bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 bindsym $mod+s floating toggle
@@ -52,10 +66,15 @@ bindsym $mod+p exec scr
 
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Up resize grow height 10 px or 10 ppt
+        bindsym Down resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -64,7 +83,55 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Audio Controls
+# class                 border  backgr. text indicator child_border
+client.focused          $bg     $bg     $fg  $bg       $bg
+client.focused_inactive $bg     $bg     $fg  $bg       $bg
+client.unfocused        $bg     $bg     $fg  $bg       $bg
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
+
+client.background       $bg
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+ bar {
+     height 25
+ }
+
+# Add a 5px border to all windows.
+for_window [class="^.*"] border normal 0
+
+# Float all windows by default.
+#for_window [class="^.*"] floating enable
+
+smart_borders on
+gaps inner 60
+gaps outer 100
+
+workspace 1 output DVI-I-0
+workspace 2 output DVI-I-0
+workspace 3 output DVI-I-0
+workspace 4 output DVI-I-0
+workspace 5 output DVI-I-0
+workspace 6 output DVI-I-0
+workspace 7 output DVI-I-0
+workspace 8 output DVI-I-0
+workspace 9 output HDMI-A-0
+
+# Toggle sticky windows
+bindsym $mod+e sticky toggle
+
+# Title bars with padding.
+# We first set the titlebar font size to a larger font size than desired
+# to get a good padding amount. We then use pango markup to force i3 to
+# print the desired font size. This gives us large titlebars with a small
+# font.
+font pango:lemon 20
+for_window [class=".*"] title_format "<span font='Artwiz Lemon 7'> > %title</span>"
+
+# Media Keys
+
+# Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id "vol up &"
 bindsym XF86AudioLowerVolume exec --no-startup-id "vol down &"
 bindsym XF86AudioMute exec --no-startup-id "vol mute &"
@@ -78,23 +145,10 @@ bindsym XF86AudioPrev exec "song prev"
 bindsym $mod+w exec "wal -i ${HOME}/Pictures/Wallpapers -o wal-set"
 
 
-# }}}
+# Cycle wallpapers
+bindsym $mod+w exec "wal -i $HOME/Pictures/Wallpapers -o wal-set"
+exec wal -i "$(< "${HOME}/Pictures/Wallpapers")" -o "wal-set"
 
-
-# WINDOW RULES {{{
-
-
-for_window [class="^.*"] border pixel 0
-for_window [class="VirtualBox"] floating enable
-
-
-# }}}
-
-
-# PROGRAM AUTOSTART {{{
-
-
-exec "wal -i $(< ${HOME}/.cache/wal/wal) -o wal-set"
-
-
-# }}}
+# exec /usr/bin/compton --config $HOME/.compton.conf
+exec --no-startup-id redshift
+exec --no-startup-id dunst
