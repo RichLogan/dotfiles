@@ -24,11 +24,7 @@ setxkbmap -option caps:escape
 
 pulseaudio --start &
 dunst -fn "$DUNST_FONT" -geometry "$DUNST_SIZE" &
-mopidy &
-devmon &
-urxvtd -q -f &
 redshift &
-dropbox &
 
 xrdb -merge "${HOME}/.Xresources"
 wal -R -o wal-set
